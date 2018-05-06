@@ -11,7 +11,8 @@ public class CountSizeDemo {
 
 		CountDownLatch countDownLatch = new CountDownLatch(4);
 		DiskMemory diskMemory = new DiskMemory();
-		ExecutorService executorService = Executors.newCachedThreadPool();
+		//ExecutorService executorService = Executors.newCachedThreadPool();
+		ExecutorService executorService = Executors.newFixedThreadPool(2);
 		for (int i = 0; i < 4; i++) {
 
 			executorService.execute(() -> {
