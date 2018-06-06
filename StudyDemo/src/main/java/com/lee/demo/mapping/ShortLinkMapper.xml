@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 下面这里必须是接口的完整路径 -->
+<mapper namespace="com.lee.demo.shortlink.dao.IShortLinkDAO">
+	
+	<select id="selectByKey" resultType="String"
+		parameterType="java.lang.String">
+		select
+		original_url
+		from shortlink
+		where short_key = #{key,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>
