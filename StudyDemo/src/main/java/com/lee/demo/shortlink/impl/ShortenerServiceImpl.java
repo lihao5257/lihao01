@@ -62,6 +62,9 @@ public class ShortenerServiceImpl implements ShortenerServiceI {
 				}
 			});
 
+	// 定义一个简单的cache，不带load，这样的话，在后面使用时，不能用get方法，只能有getIfPresent方法
+	// 因为get方法在内存中找不到对应的value时，回去load方法中创建value值。
+	/*Cache<String, String> cache = CacheBuilder.newBuilder().expireAfterWrite(10, TimeUnit.MINUTES).build(); */
 	public String createExpensiveGraph(String key) {
 		String value = null;
 		try {
@@ -79,6 +82,8 @@ public class ShortenerServiceImpl implements ShortenerServiceI {
 		 * get method 1.retrieve key in the cache 2.if the value of key is not in the
 		 * cache,then load method is called. 3.if the value of key is not created in the
 		 * load method,then throw Exception
+		 * get方法的过程：
+		 * 内存查找，没有的话，load方法创建，再没有的话，throw 异常
 		 */
 		try {
 			cacheValue = cache.get(key);
